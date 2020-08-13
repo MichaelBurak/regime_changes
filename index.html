@@ -35,41 +35,59 @@
 <p><img src="https://i.imgur.com/NKAMBLy.jpg" alt="alt text"><br>
 Photo by <a href="https://unsplash.com/@agent_illustrateur?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Christine Roy</a> on <a href="https://unsplash.com/s/photos/international?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></p>
 <h1 id="project-motivation">Project Motivation</h1>
-<p>Geopolitics is inherently linked with the actions of financial actors in different industries, but are shifts in geopolitics linked to shifts in their performance on the market? This project examines connections between Lockheed Martin(LMT)’s stock and Adverse Regime Changes, regime changes in countries away from democracy.</p>
+<p>(needs rewriting) Geopolitics is inherently linked with the actions of financial actors in different industries, but are shifts in geopolitics linked to shifts in their performance on the market? This project examines connections between Lockheed Martin(LMT)’s stock and Adverse Regime Changes, regime changes in countries away from democracy.</p>
 <p>If we can better understand the links between the military industrial complex and political events, we open the doors to better understanding of the defense sector, possibly any impact of the performance of defense sector stocks on world events, and understand the financial implications of adverse geopolitical events. Who benefits from the slide away from democracy?</p>
 <h1 id="process-overview">Process overview</h1>
+<p>(Needs a visual)</p>
 <ol>
 <li>
 <p>INSCR data on Adverse Regime Changes and State Fragility + Stock Market Data of LMT</p>
 </li>
 <li>
-<p>On both data - Time Series Analysis: VAR modeling + Machine Learning and Deep Learning(?)</p>
+<p>On both data - Time Series Analysis: VAR modeling + Machine Learning with Prophet and Extreme Gradient Boosting Trees(XGBoost.)</p>
 </li>
 <li>
-<p>—&gt; Predict the performance of LMT + Mean Magnitude of Regime Change Events.</p>
+<p>—&gt; Predict the performance of LMT</p>
 </li>
 </ol>
 <h1 id="data-sources"><strong>Data sources:</strong></h1>
-<p>-Link to INSCR page</p>
-<p>-AlphaVantage API used for Lockheed Martin stock data</p>
-<p>-Data was then examined(include the viz of two time series + details on granger causality), cleaned and merged</p>
+<ul>
+<li>
+<p><a href="http://www.systemicpeace.org/inscrdata.html">http://www.systemicpeace.org/inscrdata.html</a> (needs proper citation)</p>
+</li>
+<li>
+<p>AlphaVantage API used for Lockheed Martin stock data: <a href="https://www.alphavantage.co/documentation/">https://www.alphavantage.co/documentation/</a></p>
+</li>
+<li>
+<p>Data was then examined(include the viz of two time series + details on granger causality), cleaned and merged</p>
+</li>
+</ul>
 <p><img src="https://i.imgur.com/hGq9jHt.png" alt="alt text here"></p>
 <p><img src="https://i.imgur.com/hhekFbk.png" alt="alt text"></p>
-<p>-Time series resampling was performed from yearly/daily data to Business Daily and data filled</p>
+<p>-Time series resampling was performed from yearly/daily data to Business Daily and data filled (could use a visual)</p>
 <h1 id="baseline-modeling"><strong>Baseline modeling:</strong></h1>
-<p>-A naive persistence model was built (detail) and achieved RMSE of [ ] <strong>(Justify RMSE as a metric?)</strong></p>
+<p>-A naive persistence model was built (detail) and achieved RMSE of [fill this in ] <strong>(Justify/explain RMSE as a metric?)</strong></p>
 <p><img src="https://i.imgur.com/vtOCIjs.png" alt="alt text"></p>
 <h1 id="linear-modeling">Linear Modeling:</h1>
-<p>-VAR used and outperformed baseline modeling slightly (include viz and results)</p>
+<ul>
+<li>VAR used and outperformed baseline modeling slightly (include numerical results)</li>
+</ul>
 <p><img src="https://i.imgur.com/LjcY9uS.png" alt="alt text"></p>
-<p>-Linear regression was performed(?)</p>
 <h1 id="machine-learning">Machine learning:</h1>
-<p>-Trees were used (?)</p>
+<ul>
+<li>Facebook Prophet[include link] was used in both univariate(close price autoregression) and multivariate([TBD which variables are used]) modes, producing mildly effective results compared to VAR.</li>
+<li>Extreme Gradient Boosting Trees(XGBoost) was then used [justify why], across variations of dataframes and targets/features, producing much better results[give a number and a viz]</li>
+</ul>
 <h1 id="deep-learning">Deep learning:</h1>
-<p>-LSTM were used(?)</p>
+<ul>
+<li>LSTM were used, but did not produce much in the way of results and deserve further exploration.</li>
+</ul>
 <p><img src="https://i.imgur.com/Ygs8KsK.png" alt="alt text"></p>
 <h1 id="conclusions">Conclusions:</h1>
-<p>[TBD]</p>
+<ul>
+<li>Stock data is known to be heavily autoregressive. That is to say, the previous day of the stock can predict well the next day of the stock. However, some exogenous outside variables showed to have some feature impact with the best performing model, gradient boosting trees. [Detail which ones]</li>
+<li>[Recommendations]</li>
+</ul>
 
     </div>
   </div>
