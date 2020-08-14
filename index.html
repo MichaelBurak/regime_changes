@@ -36,38 +36,37 @@
 <p><img src="https://i.imgur.com/NKAMBLy.jpg" alt="alt text"><br>
 Photo by <a href="https://unsplash.com/@agent_illustrateur?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Christine Roy</a> on <a href="https://unsplash.com/s/photos/international?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></p>
 <h1 id="project-motivation">Project Motivation</h1>
-<p>[needs rewriting] Geopolitics is inherently linked with the actions of financial actors in different industries, but are shifts in geopolitics linked to shifts in their performance on the market? This project examines connections between Lockheed Martin(LMT)’s stock and Adverse Regime Changes, regime changes in countries away from democracy. [Needs including state fragility data mention]</p>
-<p>If we can better understand the links between the military industrial complex and political events, we open the doors to better understanding of the defense sector, possibly any impact of the performance of defense sector stocks on world events, and understand the financial implications of adverse geopolitical events. Who benefits from the slide away from democracy?</p>
+<p>[needs rewriting] Geopolitical events are often involve with the actions of financial actors in different industries, but how do geopolitical events impact financial actors in their performance on the market? This project examines connections between Lockheed Martin(LMT)’s stock and Adverse Regime Changes, regime changes in countries away from democracy. As well, a State Fragility Matrix is taken into account, analyzing countries by their fragility and effectiveness.</p>
+<p>Focusing on Lockheed Martin(ticker: LMT) stock, if we can better understand the links between the military industrial complex and political events, we open the doors to better understanding of the defense sector. As well, we can examine the inverse, any impact of the performance of defense sector stocks on world events. The world changes and there are industries that especially shift based on the changes in state regimes. Is there a benefit to the military industrial complex to turmoil and slides away from democracy?</p>
 <h1 id="process-overview">Process overview</h1>
-<p>[Needs a visual]</p>
 <ol>
 <li>
-<p>INSCR data on Adverse Regime Changes and State Fragility + Stock Market Data of LMT</p>
+<p>INSCR data on Adverse Regime Changes and State Fragility and Stock Market Data of LMT was collected.</p>
 </li>
 <li>
-<p>On both data - Time Series Analysis: VAR modeling + Machine Learning with Prophet and Extreme Gradient Boosting Trees(XGBoost.)</p>
+<p>On all data - Time Series Analysis: VAR modeling + Machine Learning with Prophet and Extreme Gradient Boosting Trees(XGBoost) performed.</p>
 </li>
 <li>
-<p>—&gt; Predict the performance of LMT</p>
+<p>Goal: —&gt; Predict the performance of LMT.</p>
 </li>
 </ol>
 <h1 id="data-sources"><strong>Data sources:</strong></h1>
 <ul>
 <li>
-<p><a href="http://www.systemicpeace.org/inscrdata.html">http://www.systemicpeace.org/inscrdata.html</a> (needs proper citation)</p>
+<p><a href="http://www.systemicpeace.org/inscrdata.html">http://www.systemicpeace.org/inscrdata.html</a></p>
 </li>
 <li>
 <p>AlphaVantage API used for Lockheed Martin stock data: <a href="https://www.alphavantage.co/documentation/">https://www.alphavantage.co/documentation/</a></p>
 </li>
 <li>
-<p>Data was then examined(include the viz of two time series + details on granger causality), cleaned and merged</p>
+<p>Data was then examined, cleaned and merged</p>
 </li>
 </ul>
 <p><img src="https://i.imgur.com/hGq9jHt.png" alt="alt text here"></p>
 <p><img src="https://i.imgur.com/hhekFbk.png" alt="alt text"></p>
 <p>-Time series resampling was performed from yearly/daily data to Business Daily and data filled (could use a visual)</p>
 <h1 id="baseline-modeling"><strong>Baseline modeling:</strong></h1>
-<p>-A naive persistence model was built (detail) and achieved  <strong>RMSE: 3.639</strong> on a differenced stationary dataset, as well as <strong>RMSE: 0.026</strong> on forward time shifted[see above], scaled data. <strong>(Justify/explain RMSE as a metric?)</strong></p>
+<p>-A naive persistence model was built (detail) and achieved  <strong>RMSE: 3.639</strong> on a differenced stationary dataset, as well as <strong>RMSE: 0.026</strong> on forward time shifted[see above for two of the major time series shifted], scaled data. **</p>
 <ul>
 <li>Naive persistence model on differenced dataset:</li>
 </ul>
@@ -78,13 +77,13 @@ Photo by <a href="https://unsplash.com/@agent_illustrateur?utm_source=unsplash&a
 <p><img src="https://i.imgur.com/AbWVRmb.png" alt="alt text"></p>
 <h1 id="linear-modeling">Linear Modeling:</h1>
 <ul>
-<li>VAR used and outperformed baseline modeling slightly with <strong>RMSE: 3.391</strong>.</li>
+<li>Vector Autoregression used and outperformed baseline modeling slightly with <strong>RMSE: 3.391</strong>.</li>
 </ul>
 <p><img src="https://i.imgur.com/LjcY9uS.png" alt="alt text"></p>
 <h1 id="machine-learning">Machine learning:</h1>
 <ul>
 <li>
-<p>Facebook Prophet[include link] was used in both univariate(close price autoregression) and multivariate([TBD which variables are used]) modes, producing mildly effective results compared to VAR. [Include numerical RMSE.]<br>
+<p><a href="https://facebook.github.io/prophet/">Facebook Prophet</a> was used in both univariate(close price autoregression) and multivariate([TBD which variables are used]) modes, producing mildly effective results compared to VAR.<br>
 <img src="https://i.imgur.com/a4AmgzQ.png" alt="alt text"></p>
 </li>
 <li>
@@ -99,15 +98,27 @@ Photo by <a href="https://unsplash.com/@agent_illustrateur?utm_source=unsplash&a
 <p><img src="https://i.imgur.com/Ygs8KsK.png" alt="alt text"></p>
 <h1 id="conclusions">Conclusions:</h1>
 <ul>
-<li>Stock data is known to be heavily autoregressive. That is to say, the previous day of the stock can predict well the next day of the stock. However, some exogenous outside variables showed to have some feature impact with the best performing model, gradient boosting trees.</li>
-<li><img src="https://i.imgur.com/jeleMUI.png" alt="alt text"></li>
-<li>[Recommendations]</li>
+<li>Stock data is known to be heavily autoregressive. That is to say, the previous day of the stock can predict well the next day of the stock. However, some exogenous outside variables showed to have some feature impact with the best performing model, gradient boosting trees.<br>
+<img src="https://i.imgur.com/jeleMUI.png" alt="alt text"></li>
+<li>Recommendations
+<ul>
+<li>Go with conventional wisdom: Follow that for the most part, stock data has known quantities such as its persistent/autoregressive nature to be utilized in analysis.</li>
+<li>Turmoil is good for business: It is a small impact, but the magnitude of collapses, violence, etc., did have an impact on the close price of LMT in the best performing(XGB) model.</li>
+<li>Timing is everything: The most impactful non-close price feature was a time polynomial however, suggesting as ever it’s important to pay attention to the trends, seasonality and so on of stocks and strike while the iron is hot.</li>
+</ul>
+</li>
 </ul>
 <h1 id="future-work">Future Work:</h1>
 <ul>
-<li></li>
-<li></li>
-<li></li>
+<li>
+<p>Neural networks and unsupervised learning(Hidden Markov Machines)</p>
+</li>
+<li>
+<p>Anomaly detection and changepoint detection</p>
+</li>
+<li>
+<p>Examining more stocks and deploying as a web application</p>
+</li>
 </ul>
 
     </div>
