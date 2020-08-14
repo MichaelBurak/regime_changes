@@ -9,7 +9,7 @@
 Photo by [Christine Roy](https://unsplash.com/@agent_illustrateur?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/s/photos/international?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
 
 # Project Motivation
-[needs rewriting] Geopolitical events are often involve with the actions of financial actors in different industries, but how do geopolitical events impact financial actors in their performance on the market? This project examines connections between Lockheed Martin(LMT)’s stock and Adverse Regime Changes, regime changes in countries away from democracy. As well, a State Fragility Matrix is taken into account, analyzing countries by their fragility and effectiveness.
+Geopolitical events are often involve with the actions of financial actors in different industries, but how do geopolitical events impact financial actors in their performance on the market? This project examines connections between Lockheed Martin(LMT)’s stock and Adverse Regime Changes, regime changes in countries away from democracy. As well, a State Fragility Matrix is taken into account, analyzing countries by their fragility and effectiveness.
 
 Focusing on Lockheed Martin(ticker: LMT) stock, if we can better understand the links between the military industrial complex and political events, we open the doors to better understanding of the defense sector. As well, we can examine the inverse, any impact of the performance of defense sector stocks on world events. The world changes and there are industries that especially shift based on the changes in state regimes. Is there a benefit to the military industrial complex to turmoil and slides away from democracy?
 
@@ -59,7 +59,7 @@ Focusing on Lockheed Martin(ticker: LMT) stock, if we can better understand the 
 
 # Machine learning:
 
-- [Facebook Prophet](https://facebook.github.io/prophet/) was used in both univariate(close price autoregression) and multivariate([TBD which variables are used]) modes, producing mildly effective results compared to VAR. 
+- [Facebook Prophet](https://facebook.github.io/prophet/) was used in both univariate(close price autoregression) and multivariate modes, producing mildly effective results compared to VAR. 
 ![alt text](https://i.imgur.com/a4AmgzQ.png)
 
 - Extreme Gradient Boosting Trees(XGBoost) was then used for its reliability, transparency compared to models such as deep learning, and speed, across variations of dataframes and targets/features, producing much better results with a GridSearchCV used on a full dataframe of stock, regime change, and fragility data of **0.0076 RSME**. This is the **best model** achieved and what the business recommendations and conclusions are based on.
