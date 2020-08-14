@@ -22,6 +22,7 @@
 <li><a href="#machine-learning">Machine learning:</a></li>
 <li><a href="#deep-learning">Deep learning:</a></li>
 <li><a href="#conclusions">Conclusions:</a></li>
+<li><a href="#future-work">Future Work:</a></li>
 </ul>
 
     </div>
@@ -35,10 +36,10 @@
 <p><img src="https://i.imgur.com/NKAMBLy.jpg" alt="alt text"><br>
 Photo by <a href="https://unsplash.com/@agent_illustrateur?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Christine Roy</a> on <a href="https://unsplash.com/s/photos/international?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></p>
 <h1 id="project-motivation">Project Motivation</h1>
-<p>(needs rewriting) Geopolitics is inherently linked with the actions of financial actors in different industries, but are shifts in geopolitics linked to shifts in their performance on the market? This project examines connections between Lockheed Martin(LMT)’s stock and Adverse Regime Changes, regime changes in countries away from democracy.</p>
+<p>[needs rewriting] Geopolitics is inherently linked with the actions of financial actors in different industries, but are shifts in geopolitics linked to shifts in their performance on the market? This project examines connections between Lockheed Martin(LMT)’s stock and Adverse Regime Changes, regime changes in countries away from democracy. [Needs including state fragility data mention]</p>
 <p>If we can better understand the links between the military industrial complex and political events, we open the doors to better understanding of the defense sector, possibly any impact of the performance of defense sector stocks on world events, and understand the financial implications of adverse geopolitical events. Who benefits from the slide away from democracy?</p>
 <h1 id="process-overview">Process overview</h1>
-<p>(Needs a visual)</p>
+<p>[Needs a visual]</p>
 <ol>
 <li>
 <p>INSCR data on Adverse Regime Changes and State Fragility + Stock Market Data of LMT</p>
@@ -66,27 +67,47 @@ Photo by <a href="https://unsplash.com/@agent_illustrateur?utm_source=unsplash&a
 <p><img src="https://i.imgur.com/hhekFbk.png" alt="alt text"></p>
 <p>-Time series resampling was performed from yearly/daily data to Business Daily and data filled (could use a visual)</p>
 <h1 id="baseline-modeling"><strong>Baseline modeling:</strong></h1>
-<p>-A naive persistence model was built (detail) and achieved RMSE of [fill this in ] <strong>(Justify/explain RMSE as a metric?)</strong></p>
+<p>-A naive persistence model was built (detail) and achieved  <strong>RMSE: 3.639</strong> on a differenced stationary dataset, as well as <strong>RMSE: 0.026</strong> on forward time shifted[see above], scaled data. <strong>(Justify/explain RMSE as a metric?)</strong></p>
+<ul>
+<li>Naive persistence model on differenced dataset:</li>
+</ul>
 <p><img src="https://i.imgur.com/vtOCIjs.png" alt="alt text"></p>
+<ul>
+<li>Naive persistence model on shifted, scaled data.</li>
+</ul>
+<p><img src="https://i.imgur.com/AbWVRmb.png" alt="alt text"></p>
 <h1 id="linear-modeling">Linear Modeling:</h1>
 <ul>
-<li>VAR used and outperformed baseline modeling slightly (include numerical results)</li>
+<li>VAR used and outperformed baseline modeling slightly with <strong>RMSE: 3.391</strong>.</li>
 </ul>
 <p><img src="https://i.imgur.com/LjcY9uS.png" alt="alt text"></p>
 <h1 id="machine-learning">Machine learning:</h1>
 <ul>
-<li>Facebook Prophet[include link] was used in both univariate(close price autoregression) and multivariate([TBD which variables are used]) modes, producing mildly effective results compared to VAR.</li>
-<li>Extreme Gradient Boosting Trees(XGBoost) was then used [justify why], across variations of dataframes and targets/features, producing much better results[give a number and a viz]</li>
+<li>
+<p>Facebook Prophet[include link] was used in both univariate(close price autoregression) and multivariate([TBD which variables are used]) modes, producing mildly effective results compared to VAR. [Include numerical RMSE.]<br>
+<img src="https://i.imgur.com/a4AmgzQ.png" alt="alt text"></p>
+</li>
+<li>
+<p>Extreme Gradient Boosting Trees(XGBoost) was then used for its reliability, transparency compared to models such as deep learning, and speed, across variations of dataframes and targets/features, producing much better results with a GridSearchCV used on a full dataframe of stock, regime change, and fragility data of <strong>0.0076 RSME</strong>. This is the <strong>best model</strong> achieved and what the business recommendations and conclusions are based on.<br>
+<img src="https://i.imgur.com/7JLN6JV.png" alt="alt text"></p>
+</li>
 </ul>
 <h1 id="deep-learning">Deep learning:</h1>
 <ul>
-<li>LSTM were used, but did not produce much in the way of results and deserve further exploration.</li>
+<li>LSTM were used, but did not produce much in the way of results and deserve further exploration in future work.</li>
 </ul>
 <p><img src="https://i.imgur.com/Ygs8KsK.png" alt="alt text"></p>
 <h1 id="conclusions">Conclusions:</h1>
 <ul>
-<li>Stock data is known to be heavily autoregressive. That is to say, the previous day of the stock can predict well the next day of the stock. However, some exogenous outside variables showed to have some feature impact with the best performing model, gradient boosting trees. [Detail which ones]</li>
+<li>Stock data is known to be heavily autoregressive. That is to say, the previous day of the stock can predict well the next day of the stock. However, some exogenous outside variables showed to have some feature impact with the best performing model, gradient boosting trees.</li>
+<li><img src="https://i.imgur.com/jeleMUI.png" alt="alt text"></li>
 <li>[Recommendations]</li>
+</ul>
+<h1 id="future-work">Future Work:</h1>
+<ul>
+<li></li>
+<li></li>
+<li></li>
 </ul>
 
     </div>
