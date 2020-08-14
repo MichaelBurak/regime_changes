@@ -22,6 +22,7 @@
 <li><a href="#machine-learning">Machine learning:</a></li>
 <li><a href="#deep-learning">Deep learning:</a></li>
 <li><a href="#conclusions">Conclusions:</a></li>
+<li><a href="#recommendations">Recommendations</a></li>
 <li><a href="#future-work">Future Work:</a></li>
 </ul>
 
@@ -44,29 +45,35 @@ Photo by <a href="https://unsplash.com/@agent_illustrateur?utm_source=unsplash&a
 <p>INSCR data on Adverse Regime Changes and State Fragility and Stock Market Data of LMT was collected.</p>
 </li>
 <li>
-<p>On all data - Time Series Analysis: VAR modeling + Machine Learning with Prophet and Extreme Gradient Boosting Trees(XGBoost) performed.</p>
+<p>On all data: Time Series Analysis: VAR modeling + Machine Learning with Prophet and Extreme Gradient Boosting Trees(XGBoost) performed.</p>
 </li>
 <li>
-<p>Goal: —&gt; Predict the performance of LMT.</p>
+<p>Goal: Predict the performance of LMT.</p>
+</li>
+<li>
+<p>Metric used: RMSE, a measure of how far off to expect a model to be on another given prediction.</p>
+</li>
+<li>
+<p>Best/source of truth model: XGBoost tuned via. GridSearchCV beat out Prophet and LSTM methods in predictive power, as well as baseline naive persistence forecasting.</p>
 </li>
 </ol>
 <h1 id="data-sources"><strong>Data sources:</strong></h1>
 <ul>
 <li>
-<p><a href="http://www.systemicpeace.org/inscrdata.html">http://www.systemicpeace.org/inscrdata.html</a></p>
+<p>INSCR data: <a href="http://www.systemicpeace.org/inscrdata.html">http://www.systemicpeace.org/inscrdata.html</a></p>
 </li>
 <li>
 <p>AlphaVantage API used for Lockheed Martin stock data: <a href="https://www.alphavantage.co/documentation/">https://www.alphavantage.co/documentation/</a></p>
 </li>
 <li>
-<p>Data was then examined, cleaned and merged</p>
+<p>Data was then examined, cleaned and merged. See below for an example data manipulation, shifting time series to achieve Granger causality of the mean average of magnitude for Adverse Regime Change Events and the Close price, both scaled, of LMT.</p>
 </li>
 </ul>
 <p><img src="https://i.imgur.com/hGq9jHt.png" alt="alt text here"></p>
 <p><img src="https://i.imgur.com/hhekFbk.png" alt="alt text"></p>
-<p>-Time series resampling was performed from yearly/daily data to Business Daily and data filled (could use a visual)</p>
+<p>-Time series resampling was performed from yearly/daily data to Business Daily frequency for analysis and missing data filled. Analysis was performed on business daily frequency data.</p>
 <h1 id="baseline-modeling"><strong>Baseline modeling:</strong></h1>
-<p>-A naive persistence model was built (detail) and achieved  <strong>RMSE: 3.639</strong> on a differenced stationary dataset, as well as <strong>RMSE: 0.026</strong> on forward time shifted[see above for two of the major time series shifted], scaled data. **</p>
+<p>-A naive persistence model was built (detail) and achieved  <strong>RMSE: 3.639</strong> on a differenced stationary dataset, as well as <strong>RMSE: 0.026</strong> on forward time shifted[see above for two of the major time series shifted], scaled data.</p>
 <ul>
 <li>Naive persistence model on differenced dataset:</li>
 </ul>
@@ -83,7 +90,7 @@ Photo by <a href="https://unsplash.com/@agent_illustrateur?utm_source=unsplash&a
 <h1 id="machine-learning">Machine learning:</h1>
 <ul>
 <li>
-<p><a href="https://facebook.github.io/prophet/">Facebook Prophet</a> was used in both univariate(close price autoregression) and multivariate modes, producing mildly effective results compared to VAR.<br>
+<p><a href="https://facebook.github.io/prophet/">Facebook Prophet</a> was used in both univariate(close price autoregression) and multivariate modes, producing mildly effective results compared to VAR. (Scores not given due to issues with scaling and Facebook Prophet as a library.)<br>
 <img src="https://i.imgur.com/a4AmgzQ.png" alt="alt text"></p>
 </li>
 <li>
@@ -93,31 +100,31 @@ Photo by <a href="https://unsplash.com/@agent_illustrateur?utm_source=unsplash&a
 </ul>
 <h1 id="deep-learning">Deep learning:</h1>
 <ul>
-<li>LSTM were used, but did not produce much in the way of results and deserve further exploration in future work.</li>
+<li>LSTM were used on both univariate and multivariate data, but did not produce much in the way of results and deserve further exploration in future work.</li>
 </ul>
 <p><img src="https://i.imgur.com/Ygs8KsK.png" alt="alt text"></p>
 <h1 id="conclusions">Conclusions:</h1>
 <ul>
-<li>Stock data is known to be heavily autoregressive. That is to say, the previous day of the stock can predict well the next day of the stock. However, some exogenous outside variables showed to have some feature impact with the best performing model, gradient boosting trees.<br>
+<li>Stock data is known to be heavily autoregressive. That is to say, the previous day of the stock can predict well the next day of the stock. However, some exogenous outside variables showed to have some feature impact with the best performing model, gradient boosting trees.</li>
+<li>See below for the intense impact of the training data’s historical Close price, as well as impact by polynomial time features and the magnitude of Adverse Regime Changes in various countries.<br>
 <img src="https://i.imgur.com/jeleMUI.png" alt="alt text"></li>
-<li>Recommendations
+</ul>
+<h1 id="recommendations">Recommendations</h1>
 <ul>
 <li>Go with conventional wisdom: Follow that for the most part, stock data has known quantities such as its persistent/autoregressive nature to be utilized in analysis.</li>
 <li>Turmoil is good for business: It is a small impact, but the magnitude of collapses, violence, etc., did have an impact on the close price of LMT in the best performing(XGB) model.</li>
 <li>Timing is everything: The most impactful non-close price feature was a time polynomial however, suggesting as ever it’s important to pay attention to the trends, seasonality and so on of stocks and strike while the iron is hot.</li>
 </ul>
-</li>
-</ul>
 <h1 id="future-work">Future Work:</h1>
 <ul>
 <li>
-<p>Neural networks and unsupervised learning(Hidden Markov Machines)</p>
+<p>Neural networks and unsupervised learning(Hidden Markov Machines) for better performance and discovering latent trends.</p>
 </li>
 <li>
-<p>Anomaly detection and changepoint detection</p>
+<p>Anomaly detection and changepoint detection, reframing the problem as finding outliers/anomalies in the autoregressive data.</p>
 </li>
 <li>
-<p>Examining more stocks and deploying as a web application</p>
+<p>Examining more stocks and deploying as a web application that users can plug in their own stocks and see how geopolitical factors may impact them historically and/or going forward.</p>
 </li>
 </ul>
 
